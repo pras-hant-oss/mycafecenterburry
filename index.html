@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cafe Canterbury | Traditional British Cafe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a5f4a;
+            --primary-dark: #134a3a;
+            --accent: #c9a227;
+            --text-dark: #2c2c2c;
+            --text-light: #666;
+            --bg-cream: #faf8f5;
+            --bg-white: #ffffff;
+            --border: #e8e4df;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--bg-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f5f0e8 0%, #e8e0d4 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(26,95,74,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-badge .stars {
+            color: var(--accent);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .hero-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-info svg {
+            width: 18px;
+            height: 18px;
+            color: var(--primary);
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+
+        .hero-cta:hover {
+            background: transparent;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin: 1.5rem auto;
+        }
+
+        /* Signature Dishes */
+        .signature-dishes {
+            background: var(--bg-cream);
+        }
+
+        .dishes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .dish-card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dish-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        .dish-image {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .dish-content {
+            padding: 1.5rem;
+        }
+
+        .dish-tag {
+            display: inline-block;
+            background: rgba(26,95,74,0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .dish-content h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .dish-content p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .dish-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Full Menu Button */
+        .menu-cta-container {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        /* Digital Menu Modal */
+        .menu-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            overflow-y: auto;
+            backdrop-filter: blur(5px);
+        }
+
+        .menu-modal.active {
+            display: block;
+        }
+
+        .menu-modal-content {
+            background: var(--bg-white);
+            max-width: 900px;
+            margin: 2rem auto;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .menu-modal-header {
+            background: var(--primary);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .menu-modal-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-modal-header p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .close-menu:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .menu-body {
+            padding: 2rem;
+        }
+
+        .menu-tabs {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border);
+            scrollbar-width: none;
+        }
+
+        .menu-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .menu-tab {
+            padding: 0.6rem 1.25rem;
+            border: none;
+            background: transparent;
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-radius: 25px;
+            white-space: nowrap;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .menu-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .menu-tab:hover:not(.active) {
+            background: var(--bg-cream);
+            color: var(--text-dark);
+        }
+
+        .menu-section {
+            display: none;
+        }
+
+        .menu-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .menu-category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        .menu-category-title:first-child {
+            margin-top: 0;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 1rem 0;
+            border-bottom: 1px dashed var(--border);
+            gap: 1rem;
+        }
+
+        .menu-item-info h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .menu-item-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .menu-item-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .menu-item-price .sizes {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            text-align: right;
+            margin-top: 0.25rem;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--bg-white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(26,95,74,0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .feature h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature p {
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        /* Reviews Section */
+        .reviews {
+            background: var(--bg-cream);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        }
+
+        .review-stars {
+            color: var(--accent);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-text {
+            color: var(--text-dark);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .reviewer-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .reviewer-info h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .reviewer-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* Visit Us Section */
+        .visit {
+            background: var(--bg-white);
+        }
+
+        .visit-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: stretch;
+        }
+
+        .visit-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .info-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .info-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .info-list svg {
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .info-list strong {
+            display: block;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .info-list span {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .hours-table {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .hours-table tr {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hours-table td {
+            padding: 0.75rem 0;
+            font-size: 0.9rem;
+        }
+
+        .hours-table td:last-child {
+            text-align: right;
+            color: var(--text-light);
+        }
+
+        .map-container {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            height: 100%;
+            min-height: 400px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border: none;
+        }
+
+        .directions-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: gap 0.3s;
+        }
+
+        .directions-btn:hover {
+            gap: 0.75rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-info {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-grid,
+            .visit-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-modal-content {
+                margin: 0;
+                border-radius: 0;
+                min-height: 100vh;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .dishes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">My Cafe Canterbury</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#visit">Visit Us</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M3 12h18M3 6h18M3 18h18"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="stars">★★★★★</span>
+                <span>4.6 Rating · 221 Reviews</span>
+            </div>
+            <h1>My Cafe <span>Canterbury</span></h1>
+            <p class="hero-subtitle">A beloved family-run cafe serving hearty British classics, all-day breakfasts, and comforting homemade meals in the heart of historic Canterbury.</p>
+            <div class="hero-info">
+                <span>
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    52 St Peter's St, Canterbury
+                </span>
+                <span>
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Open · Closes 7 PM
+                </span>
+                <span>
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    £10–20 per person
+                </span>
+            </div>
+            <a href="#visit" class="hero-cta">
+                Find Us
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+        </div>
+        <div class="scroll-indicator">
+            <svg width="32" height="32" fill="none" stroke="var(--primary)" stroke-width="2" viewBox="0 0 24 24"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+        </div>
+    </section>
+
+    <!-- Signature Dishes -->
+    <section class="signature-dishes" id="menu">
+        <div class="container">
+            <div class="section-header">
+                <h2>Signature Dishes</h2>
+                <div class="divider"></div>
+                <p>Customer favourites freshly prepared with quality ingredients</p>
+            </div>
+            <div class="dishes-grid">
+                <div class="dish-card">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76690b60944?w=600&h=400&fit=crop" alt="English Breakfast" class="dish-image">
+                    <div class="dish-content">
+                        <span class="dish-tag">Popular</span>
+                        <h3>Full English Breakfast</h3>
+                        <p>Bacon, eggs, sausages, beans, toast, mushrooms, and grilled tomatoes</p>
+                        <div class="dish-price">£6.59 – £8.79</div>
+                    </div>
+                </div>
+                <div class="dish-card">
+                    <img src="https://images.unsplash.com/photo-1579208575657-c595a05383b7?w=600&h=400&fit=crop" alt="Fish and Chips" class="dish-image">
+                    <div class="dish-content">
+                        <span class="dish-tag">Classic</span>
+                        <h3>Fish & Chips</h3>
+                        <p>Freshly battered cod served with golden chips and mushy peas</p>
+                        <div class="dish-price">£8.79</div>
+                    </div>
+                </div>
+                <div class="dish-card">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=400&fit=crop" alt="Burger and Fries" class="dish-image">
+                    <div class="dish-content">
+                        <span class="dish-tag">Fan Favourite</span>
+                        <h3>Quarter Pounder Burger</h3>
+                        <p>Succulent beef burger with lettuce, tomato, and chips on the side</p>
+                        <div class="dish-price">£3.80 – £5.49</div>
+                    </div>
+                </div>
+                <div class="dish-card">
+                    <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&h=400&fit=crop" alt="Steak Pie" class="dish-image">
+                    <div class="dish-content">
+                        <span class="dish-tag">Homemade</span>
+                        <h3>Home-made Steak Pie</h3>
+                        <p>Rich gravy pastry pie served with creamy mashed potatoes and seasonal veg</p>
+                        <div class="dish-price">£7.99</div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-cta-container">
+                <button class="btn-primary" onclick="openMenu()">
+                    View Full Menu
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&h=600&fit=crop" alt="Cafe Interior">
+                </div>
+                <div class="about-content">
+                    <h2>A Canterbury Favourite Since Day One</h2>
+                    <p>Located on the charming St Peter's Street in the heart of Canterbury, My Cafe has been serving locals and visitors alike with hearty, honest British fare. We believe in generous portions, fair prices, and a warm welcome for everyone who walks through our door.</p>
+                    <p>Whether you're after a full English to start your day, a comforting lunch, or just a cup of tea and a chat, we're here seven days a week.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                            <div>
+                                <h4>Dine-in</h4>
+                                <p>Comfortable seating</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                            </div>
+                            <div>
+                                <h4>Takeaway</h4>
+                                <p>Available on all items</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                            <div>
+                                <h4>Open 7 Days</h4>
+                                <p>Monday–Saturday early</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                            <div>
+                                <h4>Great Value</h4>
+                                <p>£10–20 per person</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Guests Say</h2>
+                <div class="divider"></div>
+                <p>Rated 4.6 stars by hundreds of happy customers</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Really nice cafe, good food and very reasonable prices. The staff are very friendly, I can highly recommend this place if you're looking for good value for money and a decent bit of grub."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">G</div>
+                        <div class="reviewer-info">
+                            <h4>Google Reviewer</h4>
+                            <p>Reviewed a year ago</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Our server Emily was really lovely and helpful. It was very professional and the rest of the team was friendly too. Could not have asked for a better late lunch. Mine was very nice! My partner enjoyed his too."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">L</div>
+                        <div class="reviewer-info">
+                            <h4>Local Guide</h4>
+                            <p>36 reviews · 29 photos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Fantastic little cafe in the heart of Canterbury. The breakfast sets are incredible value and the portions are generous. Always clean, always welcoming. A true local gem."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">S</div>
+                        <div class="reviewer-info">
+                            <h4>Sarah M.</h4>
+                            <p>Regular customer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit Us Section -->
+    <section class="visit" id="visit">
+        <div class="container">
+            <div class="section-header">
+                <h2>Visit Us</h2>
+                <div class="divider"></div>
+                <p>We'd love to see you at our St Peter's Street location</p>
+            </div>
+            <div class="visit-grid">
+                <div class="visit-info">
+                    <h3>Contact & Location</h3>
+                    <ul class="info-list">
+                        <li>
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <div>
+                                <strong>Address</strong>
+                                <span>52 St Peter's St, Canterbury CT1 2BE, United Kingdom</span>
+                            </div>
+                        </li>
+                        <li>
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            <div>
+                                <strong>Phone</strong>
+                                <span>+44 1227 769301</span>
+                            </div>
+                        </li>
+                        <li>
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <div>
+                                <strong>Opening Hours</strong>
+                                <span>Open 7 days a week</span>
+                                <table class="hours-table">
+                                    <tr><td>Monday – Saturday</td><td>7:00 AM – 7:00 PM</td></tr>
+                                    <tr><td>Sunday</td><td>10:00 AM – 7:00 PM</td></tr>
+                                </table>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="https://maps.app.goo.gl/vstNvDEiepT4rNpUA" target="_blank" class="directions-btn">
+                        Get Directions on Google Maps
+                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </div>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2490.0!2d1.078!3d51.279!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDE2JzQ0LjQiTiAxwrAwNCc0MC44IkU!5e0!3m2!1sen!2suk!4v1600000000000!5m2!1sen!2suk" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">My Cafe Canterbury</div>
+            <p class="footer-info">52 St Peter's St, Canterbury CT1 2BE · +44 1227 769301</p>
+            <div class="footer-bottom">
+                <p> My Cafe Canterbury. All rights reserved. Family-run cafe serving Canterbury with pride.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Full Menu Modal -->
+    <div class="menu-modal" id="menuModal">
+        <div class="menu-modal-content">
+            <div class="menu-modal-header">
+                <button class="close-menu" onclick="closeMenu()">×</button>
+                <h2>Our Full Menu</h2>
+                <p>Freshly prepared · Quality ingredients · Great value</p>
+            </div>
+            <div class="menu-body">
+                <div class="menu-tabs">
+                    <button class="menu-tab active" onclick="switchTab('breakfast')">All Day Breakfast</button>
+                    <button class="menu-tab" onclick="switchTab('mains')">Main Meals</button>
+                    <button class="menu-tab" onclick="switchTab('burgers')">Burgers</button>
+                    <button class="menu-tab" onclick="switchTab('omelettes')">Omelettes</button>
+                    <button class="menu-tab" onclick="switchTab('jackets')">Jacket Potatoes</button>
+                    <button class="menu-tab" onclick="switchTab('sandwiches')">Sandwiches</button>
+                    <button class="menu-tab" onclick="switchTab('kids')">Kids Meals</button>
+                    <button class="menu-tab" onclick="switchTab('drinks')">Drinks</button>
+                </div>
+
+                <!-- All Day Breakfast -->
+                <div class="menu-section active" id="breakfast">
+                    <h3 class="menu-category-title">All Day Breakfast</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Set 1</h4>
+                            <p>Bacon, egg, beans & toast</p>
+                        </div>
+                        <div class="menu-item-price">£6.59</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Set 2</h4>
+                            <p>Sausage, egg, beans & toast</p>
+                        </div>
+                        <div class="menu-item-price">£6.59</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Set 3</h4>
+                            <p>Bacon, sausage, egg, beans & toast</p>
+                        </div>
+                        <div class="menu-item-price">£6.99</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Set 4</h4>
+                            <p>2 bacon, 2 sausage, egg, beans & toast</p>
+                        </div>
+                        <div class="menu-item-price">£7.49</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Mega Breakfast</h4>
+                            <p>2 bacon, 2 sausage, 2 eggs, beans, mushrooms & toast</p>
+                        </div>
+                        <div class="menu-item-price">£8.79</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Veggie Breakfast</h4>
+                            <p>2 veggie sausages, 2 eggs, beans, mushrooms, hash brown & toast</p>
+                        </div>
+                        <div class="menu-item-price">£6.95</div>
+                    </div>
+                </div>
+
+                <!-- Main Meals -->
+                <div class="menu-section" id="mains">
+                    <h3 class="menu-category-title">Main Meals</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Freshly Battered Fish & Chips</h4>
+                            <p>Served with peas and tartare sauce</p>
+                        </div>
+                        <div class="menu-item-price">£8.79</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Grilled Chicken, Rice & Salad</h4>
+                            <p>Marinated chicken breast with seasonal salad</p>
+                        </div>
+                        <div class="menu-item-price">£8.49</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Homemade Lasagne</h4>
+                            <p>Served with garlic bread and salad</p>
+                        </div>
+                        <div class="menu-item-price">£8.99</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Gammon, Egg & Chips</h4>
+                            <p>Thick-cut gammon steak with fried egg</p>
+                        </div>
+                        <div class="menu-item-price">£8.99</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Spanish Omelette</h4>
+                            <p>With peppers, onions, and cheese</p>
+                        </div>
+                        <div class="menu-item-price">£7.49</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Mixed Grill</h4>
+                            <p>Lamb chop, gammon, sausage, egg, chips & peas</p>
+                        </div>
+                        <div class="menu-item-price">£8.49</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Home-made Pie</h4>
+                            <p>Please see blackboard for today's selection</p>
+                        </div>
+                        <div class="menu-item-price">£7.99</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Chicken Curry</h4>
+                            <p>Served with rice, chips or naan bread</p>
+                        </div>
+                        <div class="menu-item-price">£8.99</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Scampi & Chips</h4>
+                            <p>Wholetail scampi with chips and peas</p>
+                        </div>
+                        <div class="menu-item-price">£8.79</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Bangers & Mash</h4>
+                            <p>Sausages with creamy mash and onion gravy</p>
+                        </div>
+                        <div class="menu-item-price">£5.99</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Ham Salad</h4>
+                            <p>Fresh ham with mixed salad and coleslaw</p>
+                        </div>
+                        <div class="menu-item-price">£5.99</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Chicken Nuggets & Chips</h4>
+                            <p>8 pieces with chips and beans or peas</p>
+                        </div>
+                        <div class="menu-item-price">£5.99</div>
+                    </div>
+                </div>
+
+                <!-- Burgers -->
+                <div class="menu-section" id="burgers">
+                    <h3 class="menu-category-title">Burgers</h3>
+                    <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem;">Served in a bun with lettuce. Add chips for only £1.79</p>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Quarterpounder</h4>
+                        </div>
+                        <div class="menu-item-price">£3.80</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Quarterpounder with Cheese</h4>
+                        </div>
+                        <div class="menu-item-price">£4.40</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Quarterpounder with Cheese & Bacon</h4>
+                        </div>
+                        <div class="menu-item-price">£4.79</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>1/4 Cheese, Egg & Bacon Burger</h4>
+                        </div>
+                        <div class="menu-item-price">£5.49</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Chicken in a Bun</h4>
+                        </div>
+                        <div class="menu-item-price">£4.40</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Vegetarian Burger</h4>
+                        </div>
+                        <div class="menu-item-price">£3.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Half Pounder</h4>
+                        </div>
+                        <div class="menu-item-price">£4.99</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Chips</h4>
+                        </div>
+                        <div class="menu-item-price">£2.20</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Cheese & Chips</h4>
+                        </div>
+                        <div class="menu-item-price">£3.49</div>
+                    </div>
+                </div>
+
+                <!-- Omelettes -->
+                <div class="menu-section" id="omelettes">
+                    <h3 class="menu-category-title">Omelettes</h3>
+                    <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem;">Served with chips or salad</p>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Plain Omelette</h4>
+                        </div>
+                        <div class="menu-item-price">£5.30</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Cheese Omelette</h4>
+                        </div>
+                        <div class="menu-item-price">£5.99</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Ham Omelette</h4>
+                        </div>
+                        <div class="menu-item-price">£6.49</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Mushroom Omelette</h4>
+                        </div>
+                        <div class="menu-item-price">£6.49</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Cheese & Ham Omelette</h4>
+                        </div>
+                        <div class="menu-item-price">£7.19</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Cheese, Tomato & Onion Omelette</h4>
+                        </div>
+                        <div class="menu-item-price">£6.99</div>
+                    </div>
+                </div>
+
+                <!-- Jacket Potatoes -->
+                <div class="menu-section" id="jackets">
+                    <h3 class="menu-category-title">Jacket Potatoes</h3>
+                    <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem;">Served with a salad garnish & a choice of filling</p>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Beans</h4>
+                        </div>
+                        <div class="menu-item-price">£5.35</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Cheese</h4>
+                        </div>
+                        <div class="menu-item-price">£5.35</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Cheese & Beans</h4>
+                        </div>
+                        <div class="menu-item-price">£5.99</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Tuna Mayo</h4>
+                        </div>
+                        <div class="menu-item-price">£5.85</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Chicken Curry</h4>
+                        </div>
+                        <div class="menu-item-price">£6.09</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Plain with Butter</h4>
+                        </div>
+                        <div class="menu-item-price">£4.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Extra Toppings</h4>
+                        </div>
+                        <div class="menu-item-price">from 80p</div>
+                    </div>
+                </div>
+
+                <!-- Sandwiches -->
+                <div class="menu-section" id="sandwiches">
+                    <h3 class="menu-category-title">Sandwiches & Baguettes</h3>
+                    <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem;">Freshly made, served with garnish & crisps</p>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Cheese</h4>
+                        </div>
+                        <div class="menu-item-price">£3.75 <span class="sizes">Baguette £4.79</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Ham</h4>
+                        </div>
+                        <div class="menu-item-price">£3.79 <span class="sizes">Baguette £4.79</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Cheese & Ham</h4>
+                        </div>
+                        <div class="menu-item-price">£4.59 <span class="sizes">Baguette £5.29</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Cheese & Tomato</h4>
+                        </div>
+                        <div class="menu-item-price">£3.99 <span class="sizes">Baguette £4.79</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Cheese & Onion</h4>
+                        </div>
+                        <div class="menu-item-price">£3.99 <span class="sizes">Baguette £4.99</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Tuna Mayo</h4>
+                        </div>
+                        <div class="menu-item-price">£4.59 <span class="sizes">Baguette £5.19</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>BLT</h4>
+                        </div>
+                        <div class="menu-item-price">£4.19 <span class="sizes">Baguette £5.29</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Fried Egg (2)</h4>
+                        </div>
+                        <div class="menu-item-price">£2.99 <span class="sizes">Baguette £3.99</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Sausage (2)</h4>
+                        </div>
+                        <div class="menu-item-price">£2.99 <span class="sizes">Baguette £3.99</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Sausage (2) & Egg (2)</h4>
+                        </div>
+                        <div class="menu-item-price">£4.20 <span class="sizes">Baguette £4.99</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Bacon (2)</h4>
+                        </div>
+                        <div class="menu-item-price">£3.29 <span class="sizes">Baguette £4.09</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Bacon (2) & Egg (2)</h4>
+                        </div>
+                        <div class="menu-item-price">£4.99 <span class="sizes">Baguette £4.99</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Bacon (2) & Sausage (2)</h4>
+                        </div>
+                        <div class="menu-item-price">£4.99 <span class="sizes">Baguette £5.89</span></div>
+                    </div>
+                </div>
+
+                <!-- Kids Meals -->
+                <div class="menu-section" id="kids">
+                    <h3 class="menu-category-title">Kids Meals</h3>
+                    <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem;">Served to children 12 years and under</p>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Burger & Chips</h4>
+                        </div>
+                        <div class="menu-item-price">£2.69</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Fish Fingers, Chips & Beans</h4>
+                        </div>
+                        <div class="menu-item-price">£2.69</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Sausage, Chips & Beans</h4>
+                        </div>
+                        <div class="menu-item-price">£2.69</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Chicken Nuggets, Chips & Beans</h4>
+                        </div>
+                        <div class="menu-item-price">£2.69</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Egg, Chips & Beans</h4>
+                        </div>
+                        <div class="menu-item-price">£2.69</div>
+                    </div>
+                    <h3 class="menu-category-title">Kids Drinks</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Milk</h4>
+                        </div>
+                        <div class="menu-item-price">60p</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Yazoo Milkshake</h4>
+                        </div>
+                        <div class="menu-item-price">£1.15</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Fruit Shoot</h4>
+                        </div>
+                        <div class="menu-item-price">£1.35</div>
+                    </div>
+                    <h3 class="menu-category-title">Kids Ice Cream</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Vanilla ice cream with strawberry or chocolate sauce & a wafer</h4>
+                        </div>
+                        <div class="menu-item-price">£1.49</div>
+                    </div>
+                </div>
+
+                <!-- Drinks -->
+                <div class="menu-section" id="drinks">
+                    <h3 class="menu-category-title">Hot Drinks</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Tea / Decaf Tea / Lemon Tea</h4>
+                        </div>
+                        <div class="menu-item-price">£1.35</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Various Herbal/Fruit Teas</h4>
+                        </div>
+                        <div class="menu-item-price">£1.45</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>White Coffee / Black Coffee / Decaf Coffee</h4>
+                        </div>
+                        <div class="menu-item-price">£2.05 <span class="sizes">Lrg £2.25</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Latte / Cappuccino</h4>
+                        </div>
+                        <div class="menu-item-price">£2.60 <span class="sizes">Lrg £2.80</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Mocha</h4>
+                        </div>
+                        <div class="menu-item-price">£2.40 <span class="sizes">Lrg £2.60</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Espresso</h4>
+                        </div>
+                        <div class="menu-item-price">£1.30 <span class="sizes">Dbl £1.60</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Hot Chocolate</h4>
+                        </div>
+                        <div class="menu-item-price">£2.25 <span class="sizes">Lrg £2.45</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Hot Chocolate with Cream & Flake</h4>
+                        </div>
+                        <div class="menu-item-price">£2.50 <span class="sizes">Lrg £2.95</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Add Flavoured Syrup (Hazelnut, Caramel, Vanilla)</h4>
+                        </div>
+                        <div class="menu-item-price">30p</div>
+                    </div>
+
+                    <h3 class="menu-category-title">Cold Drinks</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pepsi / Diet Pepsi / 7up / Tango</h4>
+                        </div>
+                        <div class="menu-item-price">£1.85 <span class="sizes">Lrg £2.20</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Orange Juice / Apple Juice</h4>
+                        </div>
+                        <div class="menu-item-price">£1.95 <span class="sizes">Lrg £2.45</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Milk</h4>
+                        </div>
+                        <div class="menu-item-price">90p</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Bottled Water / Sparkling Water</h4>
+                        </div>
+                        <div class="menu-item-price">£1.40</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Lucozade</h4>
+                        </div>
+                        <div class="menu-item-price">£1.70</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Beer (Alcohol Free)</h4>
+                        </div>
+                        <div class="menu-item-price">£2.40</div>
+                    </div>
+
+                    <h3 class="menu-category-title">Milkshakes</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Thick Milkshake</h4>
+                            <p>Chocolate, Strawberry, Vanilla or Banana</p>
+                        </div>
+                        <div class="menu-item-price">£2.25</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Menu Modal Functions
+        function openMenu() {
+            document.getElementById('menuModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            document.getElementById('menuModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function switchTab(tabId) {
+            // Remove active from all tabs
+            document.querySelectorAll('.menu-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.menu-section').forEach(section => section.classList.remove('active'));
+            
+            // Add active to clicked tab
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // Close modal on outside click
+        document.getElementById('menuModal').addEventListener('click', function(e) {
+            if (e.target === this) closeMenu();
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeMenu();
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+            } else {
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
+</body>
+</html>
